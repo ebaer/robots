@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Robots</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+<style>
+.tableContainer {
+    border: 1px solid black;
+}
+</style>
+
+</head>
+
+<body>
+
+  <div id="testRobots" class="container">
+
+    <div class="row text-center">
+      <div class="col-md-12">
+          <h1>Robots<br /><br /></h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="col-md-12">
+          <label for="robotType">Robot Type</label>
+          <select id="robotType" type="robotType">
+              <option value="Flying Robot">Flying Robot</option>
+              <option value="Wheeled Robot">Wheeled Robot</option>
+              <option value="Walking Robot">Walking Robot</option>
+          </select>
+        </div>
+        <div class="col-md-12">
+          <label for="robotColor">Robot Color</label>
+          <select id="robotColor" :color="robotColor">
+              <option value="Gold">Gold</option>
+              <option value="Silver">Silver</option>
+              <option value="Bronze">Bronze</option>
+          </select>
+        </div>
+        <button class="btn btn-default btn-success" @click="addRobot">Build My Bot</button>
+      </div>
+
+      <div class="col-md-6">
+        <div class="tableContainer">
+          <robots :initial-robots="[]" @add="addRobot"></robots>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+    <script src="/js/robots.js"></script>
+
+<script>
+
+var lrVm = new Vue({
+    el: '#testRobots',
+
+    data: {
+        robotType: '',
+        robotColor: ''
+    },
+
+    methods: {
+        addRobot() {
+            let type = document.querySelector('#robotType').value;
+            let color = document.querySelector('#robotColor').value;
+            Event.$emit('add', type, color);
+        }
+    }
+
+});
+
+</script>
+
+</html>
