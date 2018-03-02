@@ -65,9 +65,9 @@ Vue.component('robots', {
         });
 
         Event.$on('remove', (id) => {
-alert("got remove id = " + id);
+// alert("got remove id = " + id);
             let index = this.robots.find((robot, index) => {
-console.log('id = ' + id + ', index = ' + index);
+// console.log('id = ' + id + ', index = ' + index);
                 if ( robot.id == id )
                     return index;
             });
